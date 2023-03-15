@@ -8,6 +8,11 @@
 <meta charset="ISO-8859-1">
 <title>Ver usuaios</title>
 <link rel="stylesheet" href="style.css">
+<script type="text/javascript">
+	function cambiarDePagina() {
+		window.location.href = 'agregarUsuario.jsp'
+	}
+</script>
 </head>
 <body>
 
@@ -25,6 +30,7 @@
 							+"</p>");
 			}
 		%>
+		<button onclick="cambiarDePagina()">Formularios</button>
 	</div>
 
 </body>
