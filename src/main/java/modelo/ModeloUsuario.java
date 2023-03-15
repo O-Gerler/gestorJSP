@@ -58,5 +58,28 @@ public class ModeloUsuario extends Conector{
 		 
 		return null;
 	}
+	 
+	 public boolean insertarUsuario(Usuario usuario) {
+		
+		 String st = "insert into usuarios (nombre, apellido, dni, edad) values (?, ?, ? , ?)";
+		 
+		 try {
+			PreparedStatement pst = super.conexion.prepareStatement(st);
+			
+			pst.setString(1, usuario.getNombre());
+			pst.setString(2, usuario.getApellido());
+			pst.setString(3, usuario.getDni());
+			pst.setInt(4, usuario.getEdad());
+			
+			pst.execute();
+			
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 return false;
+	}
 
 }
