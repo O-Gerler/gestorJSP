@@ -30,7 +30,7 @@
 							+"</p>");
 			}
 		%>
-		<button onclick="cambiarDePagina()">Formularios</button>
+		<button onclick="cambiarDePagina()" style="width: 80px">Formularios</button>
 	</div>
 
 </body>
