@@ -11,7 +11,7 @@ public class ModeloUsuario extends Conector{
 	
 	public Usuario getUsuario(int id) {
 		
-		String st = "SELECT * FROM usuaios WHERE id = ?";
+		String st = "SELECT * FROM usuarios WHERE id = ?";
 		
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement(st);
