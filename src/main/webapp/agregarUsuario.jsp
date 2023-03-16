@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <form action="controlador.ControladorInsertarUsuario" method="post">
+    <form  method="post" action="ControladorInsertarUsuario">
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre">
         <br>

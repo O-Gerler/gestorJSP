@@ -6,13 +6,13 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function volverHome() {
+	function volverHome(){
 		window.location.href = 'ControladorVerUsuario'
 	}
 </script>
 </head>
 <body>
-	<h1>USUARIO AGREGADO</h1>
-	<button onclick='volverHome()'>Volver</button>
+	<h1>Usuario no eliminado</h1>
+	<button onclick="volverHome()"></button>
 </body>
 </html>

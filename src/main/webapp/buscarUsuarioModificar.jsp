@@ -5,14 +5,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function volverHome() {
-		window.location.href = 'ControladorVerUsuario'
-	}
-</script>
 </head>
 <body>
-	<h1>USUARIO AGREGADO</h1>
-	<button onclick='volverHome()'>Volver</button>
+	<form action="ControladorRellenarCampos" method="post">
+		<label for="id">id</label>
+        <input type="text" name="id">
+        <br>
+        <input type="submit" id="buscarDatos" value="buscar">
+        <br>
+	</form>
 </body>
 </html>

@@ -11,16 +11,16 @@ import clases.Usuario;
 import modelo.ModeloUsuario;
 
 /**
- * Servlet implementation class ControladorInsertarUsuario
+ * Servlet implementation class ControladorVerUnicoUsuario
  */
-@WebServlet("/ControladorInsertarUsuario")
-public class ControladorInsertarUsuario extends HttpServlet {
+@WebServlet("/ControladorVerUnicoUsuario")
+public class ControladorVerUnicoUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControladorInsertarUsuario() {
+    public ControladorVerUnicoUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,7 @@ public class ControladorInsertarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -39,30 +39,19 @@ public class ControladorInsertarUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		modeloUsuario.conectar();
 		
-		String nombre = request.getParameter("nombre");
-		String apellido = request.getParameter("apellido");
-		String dni = request.getParameter("dni");
-		int edad = Integer.parseInt(request.getParameter("edad"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		
-		Usuario usuario = new Usuario();
+		Usuario usuario = modeloUsuario.getUsuario(id);
 		
-		usuario.setNombre(nombre);
-		usuario.setApellido(apellido);
-		usuario.setDni(dni);
-		usuario.setEdad(edad);
-		
-		if (modeloUsuario.insertarUsuario(usuario)) {
-			request.getRequestDispatcher("usuarioAgregado.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("usuarioNoAgregado.jsp").forward(request, response);
+		if (usuario != null) {
+			request.setAttribute("usuario", usuario);
+			request.getRequestDispatcher("verUsuario.jsp").forward(request, response);
 		}
-		
-		modeloUsuario.cerrar();
-		
-		
+
 	}
 
 }

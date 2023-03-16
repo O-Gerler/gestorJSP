@@ -9,8 +9,20 @@
 <title>Ver usuaios</title>
 <link rel="stylesheet" href="style.css">
 <script type="text/javascript">
-	function cambiarDePagina() {
+	function paginaInsertar() {
 		window.location.href = 'agregarUsuario.jsp'
+	}
+	
+	function paginaEliminar() {
+		window.location.href = 'eliminarUsuario.jsp'
+	}
+	
+	function paginaVerUsuario() {
+		window.location.href = 'buscarUsuario.jsp'
+	}
+	
+	function paginaBuscarUsuarioModificar() {
+		window.location.href = 'buscarUsuarioModificar.jsp'
 	}
 </script>
 </head>
@@ -23,14 +35,21 @@
 	<div>
 		<%
 			for (Usuario user : usuarios){
-				out.println("<p>" + "<span>Nombre: " + user.getNombre() + "</span>" 
+				out.println("<p>" + "<span>ID: " + user.getId() + "</span>"
+							+ "<span>Nombre: " + user.getNombre() + "</span>" 
 							+ "<span>Apellido: " + user.getApellido() + "</span>"
 							+ "<span>DNI: " + user.getDni() + "</span>"
 							+ "<span>Edad: " + user.getEdad() + "</span>"
 							+"</p>");
 			}
 		%>
-		<button onclick="cambiarDePagina()" style="width: 80px">Formularios</button>
+		<div>
+			<button onclick="paginaInsertar()" style="width: 80px">Insertar Usuario</button>
+			<button onclick="paginaEliminar()" style="width: 80px">Eliminar Usuario</button>
+			<button onclick="paginaVerUsuario()" style="width: 80px">Ver Usuario</button>
+			<button onclick="paginaBuscarUsuarioModificar()" style="width: 80px">Modificar Usuario</button>
+		</div>
+		
 	</div>
 
 </body>

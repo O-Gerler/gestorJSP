@@ -5,14 +5,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function volverHome() {
-		window.location.href = 'ControladorVerUsuario'
-	}
-</script>
 </head>
 <body>
-	<h1>USUARIO AGREGADO</h1>
-	<button onclick='volverHome()'>Volver</button>
+
+	<form action="ControladorVerUnicoUsuario" method="post">
+		<label for="id">ID</label>
+		<input type="text" name="id">
+		<input type="submit">
+	</form>
+
 </body>
 </html>
