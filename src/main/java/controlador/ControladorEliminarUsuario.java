@@ -35,6 +35,7 @@ public class ControladorEliminarUsuario extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		modeloUsuario.eliminarUsuario(id);
+		request.getRequestDispatcher("ControladorVerUsuario").forward(request, response);
 	}
 
 	/**

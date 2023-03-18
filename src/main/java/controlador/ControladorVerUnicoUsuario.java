@@ -30,7 +30,17 @@ public class ControladorVerUnicoUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
+		modeloUsuario.conectar();
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		Usuario usuario = modeloUsuario.getUsuario(id);
+		
+		if (usuario != null) {
+			request.setAttribute("usuario", usuario);
+			request.getRequestDispatcher("verUsuario.jsp").forward(request, response);
+		}
 	}
 
 	/**

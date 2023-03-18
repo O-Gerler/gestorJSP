@@ -1,3 +1,4 @@
+<%@page import="controlador.ControladorEliminarUsuario"%>
 <%@page import="clases.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -40,6 +41,9 @@
 							+ "<span>Apellido: " + user.getApellido() + "</span>"
 							+ "<span>DNI: " + user.getDni() + "</span>"
 							+ "<span>Edad: " + user.getEdad() + "</span>"
+							+ "<a href=ControladorEliminarUsuario?id=" + user.getId() + ">Eliminar</a>"
+							+ "<a href=ControladorRellenarCampos?id=" + user.getId() + ">Modificar</a>"
+							+ "<a href=ControladorVerUnicoUsuario?id=" + user.getId() + ">Ver</a>"
 							+"</p>");
 			}
 		%>
