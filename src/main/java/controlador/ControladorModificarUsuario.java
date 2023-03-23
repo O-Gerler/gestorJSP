@@ -1,6 +1,10 @@
 package controlador;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,18 +51,34 @@ public class ControladorModificarUsuario extends HttpServlet {
 		String apellido = request.getParameter("apellido");
 		String dni = request.getParameter("dni");
 		int edad = Integer.parseInt(request.getParameter("edad"));
+		Date fecha = null;
+		try {
+			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println(fecha);
+			System.out.println(request.getParameter("fecha"));
+			e.printStackTrace();
+		};
+		String nombreUsuario = request.getParameter("usuario");
+		String contrasena = request.getParameter("contrasena");
 		
-		Usuario usuario = new Usuario();
+		if (Usuario.confirmarContrasena(contrasena)) {
+			Usuario usuario = new Usuario();
+			
+			usuario.setId(id);
+			usuario.setNombre(nombre);
+			usuario.setApellido(apellido);
+			usuario.setDni(dni);
+			usuario.setEdad(edad);
+			usuario.setFecha(fecha);
+			
+			if (modeloUsuario.modificarUsuario(usuario)) {
+				request.getRequestDispatcher("ModificarOk.jsp").forward(request, response);
+			}
+		}else
+			request.getRequestDispatcher("modificarNoOk.jsp").forward(request, response);
 		
-		usuario.setId(id);
-		usuario.setNombre(nombre);
-		usuario.setApellido(apellido);
-		usuario.setDni(dni);
-		usuario.setEdad(edad);
-		
-		if (modeloUsuario.modificarUsuario(usuario)) {
-			request.getRequestDispatcher("ModificarOk.jsp").forward(request, response);
-		}
 	}
 
 }

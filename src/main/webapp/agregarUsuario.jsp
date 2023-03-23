@@ -20,6 +20,15 @@
         <label for="edad">Edad</label>
         <input type="text" name="edad">
         <br>
+        <label for="fecha">Fecha</label>
+        <input type="date" name="fecha">
+        <br>
+        <label for="usuario">Usuario</label>
+        <input type="text" name="usuario">
+        <br>
+        <label for="contrasena">Contraseña</label>
+        <input type="text" name="contrasena">
+        <br>
         <input type="submit" value="Enviar">
     </form>
 </body>

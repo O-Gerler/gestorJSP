@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +27,9 @@ public class ModeloUsuario extends Conector{
 			usuario.setApellido(rs.getString("apellido"));
 			usuario.setDni(rs.getString("dni"));
 			usuario.setEdad(rs.getInt("edad"));
+			usuario.setFecha(rs.getDate("fecha"));
+			usuario.setUsuario(rs.getString("usuario"));
+			usuario.setContrasena(rs.getString("contrasena"));
 			
 			return usuario;
 		} catch (SQLException e) {
@@ -61,7 +65,7 @@ public class ModeloUsuario extends Conector{
 	 
 	 public boolean insertarUsuario(Usuario usuario) {
 		
-		 String st = "insert into usuarios (nombre, apellido, dni, edad) values (?, ?, ? , ?)";
+		 String st = "insert into usuarios (nombre, apellido, dni, edad, fecha, usuario, contrasena) values (?, ?, ? , ?, ?, ?, ?)";
 		 
 		 try {
 			PreparedStatement pst = super.conexion.prepareStatement(st);
@@ -70,6 +74,9 @@ public class ModeloUsuario extends Conector{
 			pst.setString(2, usuario.getApellido());
 			pst.setString(3, usuario.getDni());
 			pst.setInt(4, usuario.getEdad());
+			pst.setDate(5,new Date(usuario.getFecha().getTime()));
+			pst.setString(6, usuario.getUsuario());
+			pst.setString(7, usuario.getContrasena());
 			
 			pst.execute();
 			
@@ -102,7 +109,7 @@ public class ModeloUsuario extends Conector{
 	
 	public boolean modificarUsuario(Usuario usuario) {
 		
-		String st = "UPDATE usuarios SET nombre = ?, apellido = ?, dni = ?, edad = ? WHERE id = ?";
+		String st = "UPDATE usuarios SET nombre = ?, apellido = ?, dni = ?, edad = ?, fecha = ?, usuario = ?, contrasena = ? WHERE id = ?";
 		
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement(st);
@@ -111,7 +118,11 @@ public class ModeloUsuario extends Conector{
 			pst.setString(2, usuario.getApellido());
 			pst.setString(3, usuario.getDni());
 			pst.setInt(4, usuario.getEdad());
-			pst.setInt(5, usuario.getId());
+			pst.setDate(5,new Date(usuario.getFecha().getTime()));
+			pst.setString(6, usuario.getUsuario());
+			pst.setString(7, usuario.getContrasena());
+			pst.setInt(8, usuario.getId());
+			
 			
 			pst.execute();
 			return true;

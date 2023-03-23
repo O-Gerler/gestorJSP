@@ -1,6 +1,9 @@
 <%@page import="clases.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.Date"%> 
+<%@page import="java.text.SimpleDateFormat"%>  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +30,15 @@
         <br>
         <label for="edad">Edad</label>
         <input type="text" name="edad" value="<%=usuario.getEdad()%>">
+        <br>
+        <label for="fecha">Fecha</label>
+        <input type="date" name="fecha" value="<%=(usuario.getFecha() == null ? "Sin fecha" : new SimpleDateFormat("yyyy-MM-dd").format(usuario.getFecha()))%>">-
+        <br>
+         <label for="usuario">Usuario</label>
+        <input type="text" name="usuario" value="<%=usuario.getUsuario()%>">
+        <br>
+        <label for="contrasena">Contraseña</label>
+        <input type="text" name="contrasena" value="<%=usuario.getContrasena()%>">
         <br>
         <input type="submit" value="Enviar">
 	</form>

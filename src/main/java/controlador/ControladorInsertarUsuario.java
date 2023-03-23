@@ -1,6 +1,10 @@
 package controlador;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,22 +50,36 @@ public class ControladorInsertarUsuario extends HttpServlet {
 		String apellido = request.getParameter("apellido");
 		String dni = request.getParameter("dni");
 		int edad = Integer.parseInt(request.getParameter("edad"));
+		Date fecha = null;
+		try {
+			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+		String nombreUsuario = request.getParameter("usuario");
+		String contrasena = request.getParameter("contrasena");
 		
-		Usuario usuario = new Usuario();
-		
-		usuario.setNombre(nombre);
-		usuario.setApellido(apellido);
-		usuario.setDni(dni);
-		usuario.setEdad(edad);
-		
-		if (modeloUsuario.insertarUsuario(usuario)) {
-			request.getRequestDispatcher("usuarioAgregado.jsp").forward(request, response);
-		} else {
+		if (Usuario.confirmarContrasena(contrasena)) {
+			Usuario usuario = new Usuario();
+			
+			usuario.setNombre(nombre);
+			usuario.setApellido(apellido);
+			usuario.setDni(dni);
+			usuario.setEdad(edad);
+			usuario.setFecha(fecha);
+			usuario.setUsuario(nombreUsuario);
+			usuario.setContrasena(contrasena);
+			
+			if (modeloUsuario.insertarUsuario(usuario)) {
+				request.getRequestDispatcher("usuarioAgregado.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("usuarioNoAgregado.jsp").forward(request, response);
+			}
+			
+			modeloUsuario.cerrar();
+		} else
 			request.getRequestDispatcher("usuarioNoAgregado.jsp").forward(request, response);
-		}
-		
-		modeloUsuario.cerrar();
-		
 		
 	}
 
