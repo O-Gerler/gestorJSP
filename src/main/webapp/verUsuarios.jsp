@@ -32,7 +32,7 @@
 <body>
 
 	<%
-	ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios");
+		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios");
 	%>
 	
 	<div>
