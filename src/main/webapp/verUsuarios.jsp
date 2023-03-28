@@ -5,6 +5,7 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,27 +32,22 @@
 </head>
 <body>
 
-	<%
-		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios");
-	%>
-	
 	<div>
-		<%
-			for (Usuario user : usuarios){
-				out.println("<p>" + "<span>ID: " + user.getId() + "</span>"
-							+ "<span>Nombre: " + user.getNombre() + "</span>" 
-							+ "<span>Apellido: " + user.getApellido() + "</span>"
-							+ "<span>DNI: " + user.getDni() + "</span>"
-							+ "<span>Edad: " + user.getEdad() + "</span>"
-							+ "<span>Fecha: " + (user.getFecha() == null ? "Sin fecha" : new SimpleDateFormat("yyyy/MM/dd").format(user.getFecha())) + "</span>"
-							+ "<span>Usuario: " + user.getUsuario() + "</span>"
-							+ "<span>Contraseña: " + user.getContrasena() + "</span>"
-							+ "<a href=ControladorEliminarUsuario?id=" + user.getId() + ">Eliminar</a>"
-							+ "<a href=ControladorRellenarCampos?id=" + user.getId() + ">Modificar</a>"
-							+ "<a href=ControladorVerUnicoUsuario?id=" + user.getId() + ">Ver</a>"
-							+"</p>");
-			}
-		%>
+		<c:forEach items="${ usuarios }" var="user">
+			<p><span>ID: ${ user.id }</span>							
+			<span>Nombre: ${ user.getNombre() }</span>
+			<span>Apellido: ${ user.getApellido() }</span>
+			<span>DNI: ${ user.getDni() }</span>
+			<span>Edad: ${ user.getEdad() }</span>
+			<span>Usuario: ${ user.getUsuario() }</span>
+			<span>Contraseña: ${ user.getContrasena() }</span>
+			<span>Fecha: ${ user.fecha}</span>
+			<a href=ControladorEliminarUsuario?id= ${user.getId()}>Eliminar</a>
+			<a href=ControladorRellenarCampos?id= ${user.getId()}>Modificar</a>
+			<a href=ControladorVerUnicoUsuario?id= ${user.getId()}>Ver</a>}
+			</p>
+		</c:forEach>
+		
 		<div>
 			<button onclick="paginaInsertar()" style="width: 80px">Insertar Usuario</button>
 			<button onclick="paginaEliminar()" style="width: 80px">Eliminar Usuario</button>

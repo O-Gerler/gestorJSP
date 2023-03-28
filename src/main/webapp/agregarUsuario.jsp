@@ -29,6 +29,7 @@
         <label for="contrasena">Contraseña</label>
         <input type="text" name="contrasena">
         <br>
+        <label for="seccion"></label>
         <input type="submit" value="Enviar">
     </form>
 </body>
